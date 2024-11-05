@@ -6,15 +6,17 @@ using namespace std;
 class Magazin {
 public:
 	string denumireMagazin;
+	string oras;
 	int nrAngajati;
-	float suprafataMagazin;
+	float incasari;
 	bool esteNonStop;
 
 	//constructor cu toti parametri
-	Magazin(string denumireMagazin, int nrAngajati, float suprafataMagazin, bool esteNonStop) {
+	Magazin(string denumireMagazin,string oras,  int nrAngajati, float incasari, bool esteNonStop) {
 		this->denumireMagazin = denumireMagazin;
+		this->oras= oras;
 		this->nrAngajati = nrAngajati;
-		this->suprafataMagazin = suprafataMagazin;
+		this->incasari = incasari;
 		this->esteNonStop = esteNonStop;
 	}
 
@@ -24,6 +26,6 @@ public:
 
 void main() {
 
-	Magazin m1("Mega", 100, 350.8, 0);
-	Magazin m2("Lidl", 80, 550, 1);
+	Magazin m1("Mega", "Cluj", 100, 350.8, 0);
+	Magazin m2("Lidl", "Arad", 80, 550, 1);
 }
