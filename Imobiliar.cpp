@@ -70,6 +70,46 @@ public:
 		cout << "An Constructie =" << anConstructie << endl << endl;
 
 	}
+
+	static int getIdBloc() {
+		return idBloc;
+	}
+
+	int getNrApartament() {
+		return nrApartamente;
+	}
+
+	void setNrApartament(int nrApartamente) {
+
+		this->nrApartamente = nrApartamente;
+	}
+
+
+	const char* getDezvortaror() const {
+		return dezvoltator ? dezvoltator : nullptr;
+
+	}
+
+	void setDezvoltator(const char* dezvoltator) {
+		if (this->dezvoltator != nullptr) {
+
+			delete[] this->dezvoltator;
+		}
+
+		if (dezvoltator != nullptr)
+		{
+			this->dezvoltator = new char[strlen(dezvoltator) + 1];
+			strcpy_s(this->dezvoltator, strlen(dezvoltator) + 1, dezvoltator);
+		}
+		else
+		{
+			this->dezvoltator = nullptr;
+		}
+	}
+
+	int getAnConstructie() {
+		return anConstructie;
+	}
 };
 
 class Dezvoltator {
@@ -115,6 +155,39 @@ public:
 		delete[] this->salariiAngajati;
 	}
 
+	static int getIdDezvoltator() {
+		return idDezvoltator;
+	}
+
+	string getNumeDezvoltator() {
+		return numeDezvoltator;
+	}
+
+	int getNumarAngajati() {
+		return nrAngajati;
+	}
+
+	float* getSalariiAngajati() const {
+		if (salariiAngajati != nullptr)
+		{
+			float* nou = new float[nrAngajati];
+			if (nrAngajati != 0) {
+				for (int i = 0; i < nrAngajati; i++) {
+					nou[i] = salariiAngajati[i];
+				}
+				return nou;
+			}
+			return nullptr;
+		}
+		return nullptr;
+	}
+
+
+
+	const float getTva() {
+		return tva;
+	}
+
 	void afisareDezvoltator() {
 		cout << "Id Dezvoltatot=" << idDezvoltator << endl;
 		cout << "Nume Dezvoltator=" << numeDezvoltator << endl;
@@ -140,6 +213,8 @@ public:
 
 		cout << " TVA =" << tva << endl << endl;
 	}
+
+
 };
 
 class Apartament {
@@ -242,4 +317,65 @@ void main() {
 	Apartament A3(4, suprafata, 800000, "Bloc1");
 
 
+	//getari Bloc
+
+	cout << "Id-ul Blocului b1 este ;" << b1.getIdBloc() << endl;
+	cout << " Numarul de Apartamente in blocul b1 este ; " << b1.getNrApartament() << endl;
+	const char* nume = b1.getDezvortaror();
+	if (nume) {
+		cout << "Dezvoltatorul apartamentului b1 este :" << nume << endl;
+	}
+	else {
+		cout << "Dezvoltatorul apartamentului b1  nu este devinit " << endl;
+	}
+	cout << "Apartamentul b1 a fost construit in anul:" << b1.getAnConstructie() << endl;
+
+	b1.setNrApartament(30);
+	cout << "Numarul Blocului b1 dupa setarea la 30 este :" << b1.getNrApartament() << endl;
+
+	b1.setDezvoltator("Dezvoltator0");
+
+	cout << "Noul nume al deszvoltatorului Blocului b1 este " << b1.getDezvortaror() << endl;
+
+	// getari Dezvoltator
+
+	cout << "Id Dezviltator D2: " << D2.getIdDezvoltator() << endl;
+	cout << "Numarul de angajati al D2 este" << D2.getNumarAngajati() << endl;
+	cout << "Numele dezvoltatorului este :" << D2.getNumeDezvoltator() << endl << endl;
+
+	float* salariiD1 = D1.getSalariiAngajati();
+
+	if (salariiD1 != nullptr) {
+		for (int i = 0; i < D1.nrAngajati; i++)
+		{
+
+			cout << "Salarile angajatului " << i + 1 << "este: " << salariiD1[i] << endl;
+		}
+		delete[] salariiD1;
+
+	}
+	else {
+		cout << " Nu avem salarile inregistrate!" << endl << endl;
+	}
+
+	float* salariiD = D3.getSalariiAngajati();
+
+	if (salariiD != nullptr) {
+		for (int i = 0; i < D3.nrAngajati; i++)
+		{
+
+			cout << "Salarile angajatului " << i + 1 << "este: " << salariiD[i] << endl;
+		}
+		delete[] salariiD;
+
+	}
+	else {
+		cout << " Nu avem salarile inregistrate!" << endl << endl;
+	}
+
+
+
+
 }
+
+
